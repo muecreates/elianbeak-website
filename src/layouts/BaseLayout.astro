@@ -28,7 +28,7 @@ const {
     {noIndex && <meta name="robots" content="noindex, nofollow" />}
     <link rel="canonical" href={canonical} />
 
-    <!-- View Transitions -->
+    <!-- View Transitions API -->
     <meta name="view-transition" content="same-origin" />
 
     <!-- OpenGraph -->
@@ -38,7 +38,7 @@ const {
     <meta property="og:description" content={description} />
     <meta property="og:image" content={ogImage} />
     <meta property="og:locale" content="de_DE" />
-    <meta property="og:site_name" content="Elian Beak" />
+    <meta property="og:site_name" content="Elian Beak - Audio Services" />
 
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image" />
@@ -47,7 +47,9 @@ const {
     <meta name="twitter:image" content={ogImage} />
 
     <!-- Favicon -->
-    <link rel="icon" type="image/png" href="https://elianbeak.de/wp-content/uploads/2024/03/Logo_Weiss_Icon_600x600.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/wp-content/uploads/2024/03/cropped-Logo_Black_Icon_600x600-32x32.png" />
+    <link rel="icon" type="image/png" sizes="192x192" href="/wp-content/uploads/2024/03/cropped-Logo_Black_Icon_600x600-192x192.png" />
+    <link rel="apple-touch-icon" href="/wp-content/uploads/2024/03/cropped-Logo_Black_Icon_600x600-180x180.png" />
 
     <!-- Schema.org -->
     <script type="application/ld+json">
@@ -67,7 +69,7 @@ const {
               "addressLocality": "Cologne",
               "addressCountry": "DE"
             },
-            "sameAs": []
+            "sameAs": ["https://www.instagram.com/elianbeak"]
           },
           {
             "@type": "LocalBusiness",
@@ -83,92 +85,74 @@ const {
               "addressCountry": "DE"
             },
             "founder": { "@id": "https://elianbeak.de/#person" },
-            "serviceType": ["Audio Engineering", "Sound Design", "Mixing", "Post Production"]
+            "serviceType": ["Audio Engineering", "Sound Design", "Mixing", "Post Production", "Voice Editing", "Podcast Recording", "Studio Recording"]
           }
         ]
       }
     </script>
 
     <style>
-      /* Custom cursor */
-      *, *::before, *::after { cursor: none !important; }
+      /* Geomanist font */
+      @font-face {
+        font-family: 'geomanist';
+        src: url('/fonts/geomanist.woff2') format('woff2'),
+             url('/fonts/geomanist.woff') format('woff');
+        font-weight: 400;
+        font-style: normal;
+        font-display: swap;
+      }
+
+      /* Custom cursor — only on fine pointer devices */
+      @media (pointer: fine) {
+        *, *::before, *::after { cursor: none !important; }
+      }
 
       #cursor {
         position: fixed;
-        top: 0;
-        left: 0;
-        width: 10px;
-        height: 10px;
+        top: 0; left: 0;
+        width: 10px; height: 10px;
         border-radius: 50%;
-        background: white;
+        background: #ffffff;
         pointer-events: none;
         z-index: 9999;
         transform: translate(-50%, -50%);
-        transition: opacity 0.2s ease, transform 0.15s ease, width 0.25s ease, height 0.25s ease, background 0.25s ease;
+        transition: width 0.2s ease, height 0.2s ease, background 0.2s ease, opacity 0.2s ease;
         will-change: transform;
+        opacity: 0;
       }
-
       #cursor.expanded {
-        width: 36px;
-        height: 36px;
+        width: 32px; height: 32px;
         background: transparent;
         border: 1px solid rgba(255,255,255,0.6);
-        transform: translate(-50%, -50%);
       }
 
-      /* View Transitions fade */
-      @view-transition {
-        navigation: auto;
-      }
-
-      ::view-transition-old(root) {
-        animation: vt-fade-out 0.25s ease forwards;
-      }
-      ::view-transition-new(root) {
-        animation: vt-fade-in 0.3s ease forwards;
-      }
-
-      @keyframes vt-fade-out {
-        from { opacity: 1; }
-        to   { opacity: 0; }
-      }
-      @keyframes vt-fade-in {
-        from { opacity: 0; }
-        to   { opacity: 1; }
-      }
+      /* View Transitions */
+      @view-transition { navigation: auto; }
+      ::view-transition-old(root) { animation: vt-out 0.22s ease forwards; }
+      ::view-transition-new(root) { animation: vt-in 0.28s ease forwards; }
+      @keyframes vt-out { to { opacity: 0; } }
+      @keyframes vt-in { from { opacity: 0; } }
     </style>
   </head>
   <body class="bg-black text-white min-h-screen font-sans antialiased overflow-x-hidden">
-    <!-- Custom cursor dot -->
     <div id="cursor" aria-hidden="true"></div>
 
     <slot />
 
     <script>
-      // Custom cursor
       const cursor = document.getElementById('cursor');
       if (cursor && window.matchMedia('(pointer: fine)').matches) {
-        let mx = 0, my = 0;
+        cursor.style.opacity = '1';
         document.addEventListener('mousemove', (e) => {
-          mx = e.clientX;
-          my = e.clientY;
-          cursor.style.left = mx + 'px';
-          cursor.style.top = my + 'px';
+          cursor.style.left = e.clientX + 'px';
+          cursor.style.top = e.clientY + 'px';
         });
-
-        document.addEventListener('mouseenter', () => cursor.style.opacity = '1');
-        document.addEventListener('mouseleave', () => cursor.style.opacity = '0');
-
+        document.addEventListener('mouseleave', () => { cursor.style.opacity = '0'; });
+        document.addEventListener('mouseenter', () => { cursor.style.opacity = '1'; });
         document.addEventListener('mouseover', (e) => {
           const t = e.target as HTMLElement;
-          if (t.closest('a, button, [role="button"], input, textarea, select, label')) {
-            cursor.classList.add('expanded');
-          } else {
-            cursor.classList.remove('expanded');
-          }
+          cursor.classList.toggle('expanded', !!t.closest('a,button,[role="button"],input,textarea,select'));
         });
-      } else if (cursor) {
-        cursor.style.display = 'none';
       }
     </script>
   </body>

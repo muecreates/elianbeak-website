@@ -3,7 +3,6 @@ import WorkCard from './WorkCard.astro';
 
 interface Project {
   title: string;
-  subtitle?: string;
   image: string;
   href?: string;
 }
@@ -11,21 +10,19 @@ interface Project {
 interface Props {
   projects: Project[];
   priorityCount?: number;
-  stagger?: boolean;
 }
 
-const { projects, priorityCount = 0, stagger = false } = Astro.props;
+const { projects, priorityCount = 0 } = Astro.props;
 ---
 
-<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-1" id="work-grid">
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-px bg-white/5">
   {projects.map((project, i) => (
     <WorkCard
       title={project.title}
-      subtitle={project.subtitle}
       image={project.image}
       href={project.href ?? '/work'}
       priority={i < priorityCount}
-      staggerIndex={stagger ? i : 0}
+      index={i}
     />
   ))}
 </div>
@@ -40,7 +37,7 @@ const { projects, priorityCount = 0, stagger = false } = Astro.props;
         }
       });
     },
-    { threshold: 0.08, rootMargin: '0px 0px -40px 0px' }
+    { threshold: 0.08, rootMargin: '0px 0px -30px 0px' }
   );
   document.querySelectorAll('.work-card').forEach((el) => observer.observe(el));
 </script>

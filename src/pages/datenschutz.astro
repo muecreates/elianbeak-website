@@ -1,0 +1,26 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Nav from '../components/Nav.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<BaseLayout
+  title="Datenschutzerklärung — Elian Beak"
+  noIndex={true}
+  canonical="https://elianbeak.de/datenschutz"
+>
+  <Nav />
+  <main class="pt-32 pb-20 px-6 max-w-2xl mx-auto">
+    <h1 class="text-xs tracking-[0.2em] uppercase text-white/40 mb-12">Datenschutzerklärung</h1>
+    <div class="space-y-6 text-white/70 text-sm leading-relaxed">
+      <p>Diese Website erhebt keine personenbezogenen Daten außer den freiwillig übermittelten Kontaktformulardaten.</p>
+      <p>Kontaktformulardaten werden ausschließlich zur Beantwortung Ihrer Anfrage verwendet und nicht an Dritte weitergegeben.</p>
+      <p>
+        Verantwortlicher:<br />
+        Elian Beak, Köln<br />
+        <a href="mailto:contact@elianbeak.de" class="hover:text-white">contact@elianbeak.de</a>
+      </p>
+    </div>
+  </main>
+  <Footer />
+</BaseLayout>

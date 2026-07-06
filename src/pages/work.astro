@@ -4,69 +4,56 @@ import Nav from '../components/Nav.astro';
 import WorkGrid from '../components/WorkGrid.astro';
 import Footer from '../components/Footer.astro';
 
+// All projects in original order from the real website
 const projects = [
-  {
-    title: 'BMW',
-    subtitle: 'Auto Shanghai',
-    image: 'http://elianbeak.de/wp-content/uploads/2024/01/Sequence-01.00_03_34_03.Still015.png',
-  },
-  {
-    title: 'June Freedom',
-    subtitle: 'Spiritual',
-    image: 'http://elianbeak.de/wp-content/uploads/2025/11/Still-2025-11-26-171302_1.1.4-e1764339782609.jpeg',
-  },
-  {
-    title: 'Hyundai',
-    image: 'http://elianbeak.de/wp-content/uploads/2024/07/Sequence-01.00_00_18_06.Still081.png',
-  },
-  {
-    title: 'Asics',
-    image: 'http://elianbeak.de/wp-content/uploads/2025/11/Still-2025-11-26-171302_1.3.7-e1764341428933.jpeg',
-  },
-  {
-    title: 'The North Face',
-    image: 'http://elianbeak.de/wp-content/uploads/2024/01/Sequence-01.00_01_46_01.Still010.png',
-  },
-  {
-    title: 'JD Sports',
-    image: 'http://elianbeak.de/wp-content/uploads/2025/11/Still-2025-11-26-171302_1.2.1.jpeg',
-  },
-  {
-    title: 'Rema',
-    image: 'http://elianbeak.de/wp-content/uploads/2024/07/REMA_HOMECOMING_16x9_new.00_00_13_03.Still003.png',
-  },
-  {
-    title: 'Hisense',
-    image: 'http://elianbeak.de/wp-content/uploads/2024/07/Hisense00_32_19.Still006.png',
-  },
-  {
-    title: 'Snipes x K1X',
-    image: 'http://elianbeak.de/wp-content/uploads/2024/01/Sequence-01.00_05_00_12.Still024.png',
-  },
+  { title: 'Hyundai', image: '/wp-content/uploads/2024/07/Sequence-01.00_00_18_06.Still081.png' },
+  { title: 'Hisense', image: '/wp-content/uploads/2024/07/Hisense00_32_19.Still006.png' },
+  { title: 'ARD / WDR', image: '/wp-content/uploads/2024/07/ERV03_50_10.Still010.png' },
+  { title: 'The North Face', image: '/wp-content/uploads/2024/01/Sequence-01.00_01_46_01.Still010.png' },
+  { title: 'C&A', image: '/wp-content/uploads/2024/01/Sequence-01.00_01_29_08.png' },
+  { title: 'BMW – Auto Shanghai', image: '/wp-content/uploads/2024/01/Sequence-01.00_03_34_03.Still015.png' },
+  { title: 'Asics', image: '/wp-content/uploads/2025/11/Still-2025-11-26-171302_1.3.7-e1764341428933.jpg' },
+  { title: 'June Freedom – Spiritual', image: '/wp-content/uploads/2025/11/Still-2025-11-26-171302_1.1.4-e1764339782609.jpg' },
+  { title: 'JD Sports', image: '/wp-content/uploads/2025/11/Still-2025-11-26-171302_1.2.1.jpg' },
+  { title: 'Rema', image: '/wp-content/uploads/2024/07/REMA_HOMECOMING_16x9_new.00_00_10_02.Still002.png' },
+  { title: 'Slime Sito', image: '/wp-content/uploads/2024/07/SITO04_40_19.Still013.png' },
+  { title: 'Snipes X K1X', image: '/wp-content/uploads/2024/01/Sequence-01.00_05_00_12.Still024.png' },
+  { title: 'Kwame', image: '/wp-content/uploads/2024/01/Sequence-01.00_04_04_11.Still021.png' },
+  { title: 'SummerJam', image: '/wp-content/uploads/2024/08/REMA_HOMECOMING_16x9_new.00_02_49_11.Still021.png' },
+  { title: 'Veils Around Us', image: '/wp-content/uploads/2024/01/Sequence-01.00_09_07_15.Still028.png' },
+  { title: 'Castrol on Mars', image: '/wp-content/uploads/2024/01/Sequence-01.00_13_11_19.Still036.jpg' },
+  { title: 'Hype Festival', image: '/wp-content/uploads/2024/01/C060269-R1-29-31.jpg' },
+  { title: 'Botter', image: '/wp-content/uploads/2024/01/Sequence-01.00_19_27_22.Still049.jpg' },
+  { title: 'Axor', image: '/wp-content/uploads/2024/01/Sequence-01.00_21_07_02.Still054.png' },
+  { title: 'Char Broil', image: '/wp-content/uploads/2024/01/Sequence-01.00_00_38_07.Still067.png' },
+  { title: 'Cricket Manager', image: '/wp-content/uploads/2024/02/Sequence-01.00_22_53_13.Still061.png' },
+  { title: 'Kirschgrün', image: '/wp-content/uploads/2024/02/Sequence-01.00_34_31_01.Still064.png' },
+  { title: 'Relieve', image: '/wp-content/uploads/2024/02/Sequence-01.00_02_47_15.Still067.jpg' },
+  { title: 'Carlo Colucci', image: '/wp-content/uploads/2024/02/Sequence-01.00_11_01_14.Still070.jpg' },
+  { title: 'Eightyfiveclo', image: '/wp-content/uploads/2024/04/Image.png' },
 ];
 
 const schemaProjects = projects.map((p) => ({
   '@type': 'CreativeWork',
-  name: p.subtitle ? `${p.title} — ${p.subtitle}` : p.title,
+  name: p.title,
   creator: { '@id': 'https://elianbeak.de/#person' },
-  image: p.image,
+  image: `https://elianbeak.de${p.image}`,
   url: 'https://elianbeak.de/work',
 }));
 ---
 
 <BaseLayout
   title="All Work — Elian Beak"
-  description="Audio Engineering und Sound Design Projekte von Elian Beak für BMW, Hyundai, The North Face, Asics, JD Sports und mehr."
+  description="Audio Engineering und Sound Design Projekte von Elian Beak für BMW, Hyundai, The North Face, Asics, JD Sports, Hisense, Rema und mehr."
   canonical="https://elianbeak.de/work"
 >
   <script type="application/ld+json" set:html={JSON.stringify(schemaProjects)} />
-
   <Nav />
 
-  <main class="pt-32 pb-20 px-6">
+  <main class="pt-32 pb-20 px-6 lg:px-10">
     <div class="max-w-7xl mx-auto">
-      <h1 class="text-xs tracking-widest uppercase text-white/40 mb-10">All Work</h1>
-      <WorkGrid projects={projects} priorityCount={3} stagger={true} />
+      <h1 class="text-xs tracking-[0.2em] uppercase text-white/40 mb-12">All Work</h1>
+      <WorkGrid projects={projects} priorityCount={3} />
     </div>
   </main>
 

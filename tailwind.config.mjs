@@ -6,15 +6,13 @@ export default {
       colors: {
         black: '#000000',
         white: '#ffffff',
+        'eb-blue': '#4353ff',
+        'eb-dark': '#2b2b2b',
+        'eb-grey': '#444444',
       },
       fontFamily: {
-        sans: ['system-ui', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'sans-serif'],
-      },
-      transitionTimingFunction: {
-        DEFAULT: 'ease',
-      },
-      transitionDuration: {
-        DEFAULT: '300ms',
+        sans: ['geomanist', 'system-ui', '-apple-system', 'sans-serif'],
+        serif: ['Cardo', 'Georgia', 'serif'],
       },
     },
   },

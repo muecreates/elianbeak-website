@@ -2,6 +2,17 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Nav from '../components/Nav.astro';
 import Footer from '../components/Footer.astro';
+
+const expertise = [
+  'Sound Design',
+  'Post Production / Editing',
+  'Voice Editing',
+  'Music Production',
+  'Mixing',
+  'Studio Recording',
+  'Set Recording',
+  'Podcast Recording',
+];
 ---
 
 <BaseLayout
@@ -11,16 +22,20 @@ import Footer from '../components/Footer.astro';
 >
   <Nav />
 
-  <main class="pt-32 pb-20 px-6">
-    <div class="max-w-5xl mx-auto">
-      <h1 class="text-xs tracking-widest uppercase text-white/40 mb-16">About</h1>
+  <main class="pt-28 pb-20 px-6 lg:px-10">
+    <div class="max-w-6xl mx-auto">
+      <h1 class="text-xs tracking-[0.2em] uppercase text-white/40 mb-16">About</h1>
 
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-16 items-start">
-        <!-- Text -->
-        <div class="order-2 md:order-1">
-          <div class="prose prose-invert prose-lg max-w-none space-y-6 text-white/80 leading-relaxed text-base">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-16 lg:gap-24 items-start">
+        <!-- Text content -->
+        <div class="fade-in order-2 md:order-1">
+          <h2 class="text-2xl md:text-3xl font-light tracking-wide mb-8 leading-snug">
+            I craft unique sound<br />in a noisy world
+          </h2>
+
+          <div class="space-y-5 text-white/70 leading-relaxed text-sm">
             <p>
-              I craft unique sound in a noisy world. Sound is often an overlooked element, yet it plays a crucial role in our perception and experience of the world around us.
+              Sound is often an overlooked element, yet it plays a crucial role in our perception and experience of the world around us.
             </p>
             <p>
               What truly captivates me is the challenge of creating sound for the unknown. Crafting auditory experiences for things we've never heard before. Imagine the sound of a distant planet, the rumble of a futuristic city, or the ambiance of an undiscovered underwater realm. These are the canvases on which I paint with sound. It's about constantly asking myself, "What could this sound like?"
@@ -33,24 +48,29 @@ import Footer from '../components/Footer.astro';
             </p>
           </div>
 
-          <div class="mt-12 flex flex-col gap-3 text-sm text-white/40">
-            <span>Based in Cologne, Germany</span>
-            <span>Roots in Barbados, Caribbean</span>
+          <!-- Expertise list -->
+          <div class="mt-12">
+            <span class="text-xs tracking-[0.2em] uppercase text-white/40 block mb-4">Expertise</span>
+            <ul class="grid grid-cols-2 gap-y-2 gap-x-8">
+              {expertise.map((item) => (
+                <li class="text-sm text-white/70 font-light">{item}</li>
+              ))}
+            </ul>
           </div>
 
           <a
-            href="/contact"
-            class="mt-10 inline-block border border-white/30 px-8 py-3 text-sm tracking-widest uppercase hover:bg-white hover:text-black transition-all duration-300"
+            href="/#contact"
+            class="mt-12 inline-block border border-white/30 px-8 py-3 text-sm tracking-wide hover:bg-white hover:text-black transition-all duration-300"
           >
             Get in touch
           </a>
         </div>
 
-        <!-- Portrait image — using a gallery photo as placeholder for about page visual -->
-        <div class="order-1 md:order-2 fade-in">
+        <!-- Portrait -->
+        <div class="order-1 md:order-2 fade-in" style="transition-delay: 0.15s">
           <img
-            src="https://elianbeak.de/wp-content/uploads/2024/04/Image.png"
-            alt="Elian Beak — Audio Engineer, Cologne"
+            src="/wp-content/uploads/2024/04/Image.png"
+            alt="Elian Beak — Audio Engineer aus Köln"
             width="600"
             height="750"
             loading="lazy"
@@ -68,7 +88,7 @@ import Footer from '../components/Footer.astro';
   .fade-in {
     opacity: 0;
     transform: translateY(20px);
-    transition: opacity 0.6s ease, transform 0.6s ease;
+    transition: opacity 0.65s ease, transform 0.65s ease;
   }
   .fade-in.visible {
     opacity: 1;
@@ -77,16 +97,11 @@ import Footer from '../components/Footer.astro';
 </style>
 
 <script>
-  const observer = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('visible');
-          observer.unobserve(entry.target);
-        }
-      });
-    },
-    { threshold: 0.1 }
+  const io = new IntersectionObserver(
+    (entries) => entries.forEach((e) => {
+      if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); }
+    }),
+    { threshold: 0.08 }
   );
-  document.querySelectorAll('.fade-in').forEach((el) => observer.observe(el));
+  document.querySelectorAll('.fade-in').forEach((el) => io.observe(el));
 </script>

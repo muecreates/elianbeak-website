@@ -1,0 +1,10 @@
+				@font-face {
+					font-family: 'geomanist';
+					src: url('1660Geomanist.woff2') format('woff2'),
+						url('1660Geomanist.woff') format('woff');
+					font-weight: 400; font-style: normal; font-display: auto;
+				}
+
+				.geomanist{font-family: 'geomanist' !important;}
+
+		

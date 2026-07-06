@@ -1,141 +1,172 @@
 ---
-const currentPath = Astro.url.pathname;
+const path = Astro.url.pathname;
 
 const links = [
   { href: '/', label: 'Home' },
   { href: '/work', label: 'All Work' },
   { href: '/about', label: 'About' },
   { href: '/gallery', label: 'Gallery' },
-  { href: '/contact', label: 'Contact' },
 ];
+
+function isActive(href: string) {
+  if (href === '/') return path === '/';
+  return path.startsWith(href);
+}
 ---
 
-<header class="fixed top-0 left-0 right-0 z-50 px-6 py-4 flex items-center justify-between">
-  <!-- Logo -->
-  <a href="/" aria-label="Elian Beak Home" class="nav-link">
-    <img
-      src="https://elianbeak.de/wp-content/uploads/2024/03/Logo_Weiss.png"
-      alt="Elian Beak"
-      width="120"
-      height="32"
-      loading="eager"
-      fetchpriority="high"
-      class="h-7 w-auto"
-    />
-  </a>
-
-  <!-- Desktop Nav -->
-  <nav class="hidden md:flex items-center gap-8" aria-label="Main navigation">
-    {links.map(({ href, label }) => (
-      <a
-        href={href}
-        class={`nav-link nav-underline text-sm tracking-wide transition-opacity duration-300 ${
-          currentPath === href || (href !== '/' && currentPath.startsWith(href))
-            ? 'opacity-100 active'
-            : 'opacity-50'
-        }`}
-      >
-        {label}
-      </a>
-    ))}
-    <a
-      href="/contact"
-      class="nav-link text-sm tracking-wide border border-white/30 px-4 py-2 transition-all duration-300 hover:bg-white hover:text-black"
-    >
-      Let's move together!
+<header id="site-header" class="fixed top-0 left-0 right-0 z-50 transition-colors duration-500">
+  <div class="flex items-center justify-between px-6 py-4">
+    <!-- Logo -->
+    <a href="/" aria-label="Elian Beak – Home" class="shrink-0">
+      <img
+        src="/wp-content/uploads/2024/03/Logo_Weiss_Icon_600x600.png"
+        alt="Elian Beak"
+        width="70"
+        height="70"
+        loading="eager"
+        fetchpriority="high"
+        class="w-14 h-14 object-contain"
+      />
     </a>
-  </nav>
 
-  <!-- Mobile Hamburger -->
-  <button
-    id="menu-toggle"
-    class="md:hidden flex flex-col gap-1.5 p-2"
-    aria-label="Toggle menu"
-    aria-expanded="false"
-    aria-controls="mobile-menu"
-  >
-    <span class="block w-6 h-px bg-white transition-all duration-300" id="bar1"></span>
-    <span class="block w-6 h-px bg-white transition-all duration-300" id="bar2"></span>
-    <span class="block w-6 h-px bg-white transition-all duration-300" id="bar3"></span>
-  </button>
+    <!-- Desktop Nav -->
+    <nav class="hidden md:flex items-center gap-2" aria-label="Hauptnavigation">
+      {links.map(({ href, label }) => (
+        <a
+          href={href}
+          class={`nav-link px-5 py-5 text-sm font-light tracking-wide transition-colors duration-300 ${
+            isActive(href) ? 'text-white' : 'text-white/60 hover:text-white/90'
+          }`}
+        >
+          {label}
+        </a>
+      ))}
+      <!-- Contact CTA -->
+      <a href="/#contact" class="nav-cta flex items-center gap-2 ml-4 px-4 py-2 text-sm font-light tracking-wide border border-white/30 hover:border-white/60 transition-all duration-300">
+        <img
+          src="/wp-content/uploads/2023/12/79102-200-1.png"
+          alt=""
+          aria-hidden="true"
+          width="25"
+          height="25"
+          class="w-6 h-6 object-contain"
+        />
+        <span class="flex flex-col leading-tight text-left">
+          <span class="text-xs font-semibold">Contact</span>
+          <span class="text-[10px] text-white/70">Let's move together!</span>
+        </span>
+      </a>
+    </nav>
+
+    <!-- Mobile hamburger -->
+    <button
+      id="nav-toggle"
+      class="md:hidden flex flex-col gap-[5px] p-2"
+      aria-label="Menü öffnen"
+      aria-expanded="false"
+      aria-controls="mobile-nav"
+    >
+      <span class="bar block w-6 h-px bg-white transition-all duration-300 origin-center"></span>
+      <span class="bar block w-6 h-px bg-white transition-all duration-300"></span>
+      <span class="bar block w-6 h-px bg-white transition-all duration-300 origin-center"></span>
+    </button>
+  </div>
 </header>
 
-<!-- Mobile Menu -->
+<!-- Mobile fullscreen menu -->
 <div
-  id="mobile-menu"
+  id="mobile-nav"
   class="fixed inset-0 z-40 bg-black flex flex-col items-center justify-center gap-8 opacity-0 pointer-events-none transition-opacity duration-300"
   aria-hidden="true"
 >
   {links.map(({ href, label }) => (
-    <a
-      href={href}
-      class="nav-link text-2xl tracking-wide opacity-80 hover:opacity-100 transition-opacity duration-300"
-    >
+    <a href={href} class="text-[40px] font-light tracking-widest text-white/90 hover:text-white transition-colors duration-300">
       {label}
     </a>
   ))}
-  <a
-    href="/contact"
-    class="nav-link text-xl tracking-wide border border-white/30 px-6 py-3 mt-4 hover:bg-white hover:text-black transition-all duration-300"
-  >
+  <a href="/#contact" class="mt-4 text-xl font-light text-white/80 border border-white/30 px-8 py-4 hover:bg-white hover:text-black transition-all duration-300">
     Let's move together!
   </a>
 </div>
 
 <style>
-  .nav-underline {
+  /* Underline slide animation on desktop nav links */
+  .nav-link {
     position: relative;
   }
-  .nav-underline::after {
+  .nav-link::after {
     content: '';
     position: absolute;
-    bottom: -2px;
-    left: 0;
-    width: 0;
+    bottom: 14px;
+    left: 20px;
+    right: 20px;
     height: 1px;
-    background: white;
-    transition: width 0.3s ease;
+    background: currentColor;
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.3s ease;
   }
-  .nav-underline:hover::after,
-  .nav-underline.active::after {
-    width: 100%;
+  .nav-link:hover::after,
+  .nav-link[data-active]::after {
+    transform: scaleX(1);
+  }
+
+  /* Scrolled state */
+  #site-header.scrolled {
+    background-color: rgba(0, 0, 0, 0.85);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
   }
 </style>
 
 <script>
-  const toggle = document.getElementById('menu-toggle');
-  const menu = document.getElementById('mobile-menu');
-  const bar1 = document.getElementById('bar1');
-  const bar2 = document.getElementById('bar2');
-  const bar3 = document.getElementById('bar3');
-
+  // Hamburger toggle
+  const toggle = document.getElementById('nav-toggle');
+  const menu = document.getElementById('mobile-nav');
+  const bars = toggle?.querySelectorAll('.bar') as NodeListOf<HTMLElement> | undefined;
   let open = false;
 
   toggle?.addEventListener('click', () => {
     open = !open;
     toggle.setAttribute('aria-expanded', String(open));
     menu?.setAttribute('aria-hidden', String(!open));
-
     if (open) {
       menu?.classList.remove('opacity-0', 'pointer-events-none');
       menu?.classList.add('opacity-100');
-      bar1?.classList.add('rotate-45', 'translate-y-2');
-      bar2?.classList.add('opacity-0');
-      bar3?.classList.add('-rotate-45', '-translate-y-2');
+      if (bars) {
+        bars[0].style.transform = 'rotate(45deg) translateY(6px)';
+        bars[1].style.opacity = '0';
+        bars[2].style.transform = 'rotate(-45deg) translateY(-6px)';
+      }
     } else {
       menu?.classList.add('opacity-0', 'pointer-events-none');
       menu?.classList.remove('opacity-100');
-      bar1?.classList.remove('rotate-45', 'translate-y-2');
-      bar2?.classList.remove('opacity-0');
-      bar3?.classList.remove('-rotate-45', '-translate-y-2');
+      if (bars) {
+        bars[0].style.transform = '';
+        bars[1].style.opacity = '';
+        bars[2].style.transform = '';
+      }
     }
   });
 
-  menu?.querySelectorAll('a').forEach((link) => {
-    link.addEventListener('click', () => {
+  menu?.querySelectorAll('a').forEach(a => {
+    a.addEventListener('click', () => {
       open = false;
       menu.classList.add('opacity-0', 'pointer-events-none');
       menu.classList.remove('opacity-100');
+      if (bars) {
+        bars[0].style.transform = '';
+        bars[1].style.opacity = '';
+        bars[2].style.transform = '';
+      }
     });
   });
+
+  // Scroll-based header background
+  const header = document.getElementById('site-header');
+  const onScroll = () => {
+    header?.classList.toggle('scrolled', window.scrollY > 60);
+  };
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
 </script>
