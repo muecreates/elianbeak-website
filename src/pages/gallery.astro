@@ -4,59 +4,59 @@ import Nav from '../components/Nav.astro';
 import Footer from '../components/Footer.astro';
 
 const photos = [
-  { src: 'https://elianbeak.de/wp-content/uploads/2024/02/C060267-R1-17-21-scaled.jpg', alt: '35mm analog photograph' },
-  { src: 'https://elianbeak.de/wp-content/uploads/2024/02/C060267-R1-21-25-scaled.jpg', alt: '35mm analog photograph' },
-  { src: 'https://elianbeak.de/wp-content/uploads/2024/02/C060267-R1-20-24-scaled.jpg', alt: '35mm analog photograph' },
-  { src: 'https://elianbeak.de/wp-content/uploads/2024/02/C060269-R1-17-19-scaled.jpg', alt: '35mm analog photograph' },
-  { src: 'https://elianbeak.de/wp-content/uploads/2024/02/C060269-R1-05-6-scaled.jpg', alt: '35mm analog photograph' },
-  { src: 'https://elianbeak.de/wp-content/uploads/2024/02/C060267-R1-28-34-scaled.jpg', alt: '35mm analog photograph' },
-  { src: 'https://elianbeak.de/wp-content/uploads/2024/02/C060265-R1-17-19-scaled.jpg', alt: '35mm analog photograph' },
-  { src: 'https://elianbeak.de/wp-content/uploads/2024/02/C060265-R1-16-18-scaled.jpg', alt: '35mm analog photograph' },
-  { src: 'https://elianbeak.de/wp-content/uploads/2024/02/C060266-R1-17-18-scaled.jpg', alt: '35mm analog photograph' },
-  { src: 'https://elianbeak.de/wp-content/uploads/2024/02/C060266-R1-24-25-scaled.jpg', alt: '35mm analog photograph' },
-  { src: 'https://elianbeak.de/wp-content/uploads/2024/02/C060266-R1-26-27-scaled.jpg', alt: '35mm analog photograph' },
-  { src: 'https://elianbeak.de/wp-content/uploads/2024/02/C060269-R1-22-24-scaled.jpg', alt: '35mm analog photograph' },
-  { src: 'https://elianbeak.de/wp-content/uploads/2024/02/C060267-R1-03-4-scaled.jpg', alt: '35mm analog photograph' },
-  { src: 'https://elianbeak.de/wp-content/uploads/2024/02/C060266-R1-20-21-scaled.jpg', alt: '35mm analog photograph' },
-  { src: 'https://elianbeak.de/wp-content/uploads/2024/02/C060265-R1-02-3-scaled.jpg', alt: '35mm analog photograph' },
-  { src: 'https://elianbeak.de/wp-content/uploads/2024/02/C060269-R1-29-31-scaled.jpg', alt: '35mm analog photograph' },
-  { src: 'https://elianbeak.de/wp-content/uploads/2024/02/C061935-R1-05-6-scaled.jpg', alt: '35mm analog photograph' },
-  { src: 'https://elianbeak.de/wp-content/uploads/2024/02/C061934-R1-12-13-scaled.jpg', alt: '35mm analog photograph' },
-  { src: 'https://elianbeak.de/wp-content/uploads/2024/02/C061934-R1-06-7-scaled.jpg', alt: '35mm analog photograph' },
-  { src: 'https://elianbeak.de/wp-content/uploads/2024/02/C061934-R1-15-16-scaled.jpg', alt: '35mm analog photograph' },
-  { src: 'https://elianbeak.de/wp-content/uploads/2024/02/C061934-R1-33-34-scaled.jpg', alt: '35mm analog photograph' },
-  { src: 'https://elianbeak.de/wp-content/uploads/2024/02/C061929-R1-05-6-scaled.jpg', alt: '35mm analog photograph' },
-  { src: 'https://elianbeak.de/wp-content/uploads/2024/02/C061929-R1-16-17-scaled.jpg', alt: '35mm analog photograph' },
-  { src: 'https://elianbeak.de/wp-content/uploads/2024/02/C061935-R1-14-15-scaled.jpg', alt: '35mm analog photograph' },
-  { src: 'https://elianbeak.de/wp-content/uploads/2024/02/C061935-R1-04-5-scaled.jpg', alt: '35mm analog photograph' },
-  { src: 'https://elianbeak.de/wp-content/uploads/2024/02/C061935-R1-03-4-scaled.jpg', alt: '35mm analog photograph' },
-  { src: 'https://elianbeak.de/wp-content/uploads/2024/02/C061935-R1-02-3-scaled.jpg', alt: '35mm analog photograph' },
-  { src: 'https://elianbeak.de/wp-content/uploads/2024/02/C061935-R1-01-2-scaled.jpg', alt: '35mm analog photograph' },
-  { src: 'https://elianbeak.de/wp-content/uploads/2024/02/C058880-R1-06-7-scaled.jpg', alt: '35mm analog photograph' },
-  { src: 'https://elianbeak.de/wp-content/uploads/2024/02/C058880-R1-04-5-scaled.jpg', alt: '35mm analog photograph' },
-  { src: 'https://elianbeak.de/wp-content/uploads/2024/02/C058880-R1-05-6-scaled.jpg', alt: '35mm analog photograph' },
-  { src: 'https://elianbeak.de/wp-content/uploads/2024/02/C058880-R1-33-34-scaled.jpg', alt: '35mm analog photograph' },
-  { src: 'https://elianbeak.de/wp-content/uploads/2024/02/C058880-R1-03-4-scaled.jpg', alt: '35mm analog photograph' },
-  { src: 'https://elianbeak.de/wp-content/uploads/2024/02/C058880-R1-07-8-scaled.jpg', alt: '35mm analog photograph' },
-  { src: 'https://elianbeak.de/wp-content/uploads/2024/02/C058880-R1-02-3-scaled.jpg', alt: '35mm analog photograph' },
-  { src: 'https://elianbeak.de/wp-content/uploads/2024/02/C058880-R1-27-28-scaled.jpg', alt: '35mm analog photograph' },
-  { src: 'https://elianbeak.de/wp-content/uploads/2024/02/C060266-R1-03-4-scaled.jpg', alt: '35mm analog photograph' },
-  { src: 'https://elianbeak.de/wp-content/uploads/2024/02/C059750-R1-18-19-scaled.jpg', alt: '35mm analog photograph' },
-  { src: 'https://elianbeak.de/wp-content/uploads/2024/02/C059750-R1-14-15-scaled.jpg', alt: '35mm analog photograph' },
-  { src: 'https://elianbeak.de/wp-content/uploads/2024/02/C059750-R1-06-7-scaled.jpg', alt: '35mm analog photograph' },
-  { src: 'https://elianbeak.de/wp-content/uploads/2024/02/C059459-R1-23-24-scaled.jpg', alt: '35mm analog photograph' },
-  { src: 'https://elianbeak.de/wp-content/uploads/2024/02/C058267-R1-35-36-scaled.jpeg', alt: '35mm analog photograph' },
-  { src: 'https://elianbeak.de/wp-content/uploads/2024/02/C058267-R1-34-35-scaled.jpeg', alt: '35mm analog photograph' },
-  { src: 'https://elianbeak.de/wp-content/uploads/2024/02/C059459-R1-18-19-scaled.jpg', alt: '35mm analog photograph' },
-  { src: 'https://elianbeak.de/wp-content/uploads/2024/02/C058267-R1-33-34-scaled.jpeg', alt: '35mm analog photograph' },
-  { src: 'https://elianbeak.de/wp-content/uploads/2024/02/C058267-R1-24-25-scaled.jpeg', alt: '35mm analog photograph' },
-  { src: 'https://elianbeak.de/wp-content/uploads/2024/02/C058267-R1-23-24-scaled.jpeg', alt: '35mm analog photograph' },
-  { src: 'https://elianbeak.de/wp-content/uploads/2024/02/C058267-R1-22-23-scaled.jpeg', alt: '35mm analog photograph' },
-  { src: 'https://elianbeak.de/wp-content/uploads/2024/02/C058879-R1-24-25-scaled.jpg', alt: '35mm analog photograph' },
-  { src: 'https://elianbeak.de/wp-content/uploads/2024/02/C058879-R1-23-24-scaled.jpg', alt: '35mm analog photograph' },
-  { src: 'https://elianbeak.de/wp-content/uploads/2024/02/C058879-R1-22-23-scaled.jpg', alt: '35mm analog photograph' },
-  { src: 'https://elianbeak.de/wp-content/uploads/2024/02/C060418-R1-11-12-scaled.jpg', alt: '35mm analog photograph' },
-  { src: 'https://elianbeak.de/wp-content/uploads/2024/04/Image.png', alt: '35mm analog photograph' },
+  { src: 'https://elianbeak.de/wp-content/uploads/2024/02/C060267-R1-17-21-scaled.jpg', alt: 'Analog 35mm film photograph — street scene' },
+  { src: 'https://elianbeak.de/wp-content/uploads/2024/02/C060267-R1-21-25-scaled.jpg', alt: 'Analog 35mm film photograph — urban landscape' },
+  { src: 'https://elianbeak.de/wp-content/uploads/2024/02/C060267-R1-20-24-scaled.jpg', alt: 'Analog 35mm film photograph' },
+  { src: 'https://elianbeak.de/wp-content/uploads/2024/02/C060269-R1-17-19-scaled.jpg', alt: 'Analog 35mm film photograph — architecture' },
+  { src: 'https://elianbeak.de/wp-content/uploads/2024/02/C060269-R1-05-6-scaled.jpg', alt: 'Analog 35mm film photograph' },
+  { src: 'https://elianbeak.de/wp-content/uploads/2024/02/C060267-R1-28-34-scaled.jpg', alt: 'Analog 35mm film photograph — portrait' },
+  { src: 'https://elianbeak.de/wp-content/uploads/2024/02/C060265-R1-17-19-scaled.jpg', alt: 'Analog 35mm film photograph' },
+  { src: 'https://elianbeak.de/wp-content/uploads/2024/02/C060265-R1-16-18-scaled.jpg', alt: 'Analog 35mm film photograph — nature' },
+  { src: 'https://elianbeak.de/wp-content/uploads/2024/02/C060266-R1-17-18-scaled.jpg', alt: 'Analog 35mm film photograph' },
+  { src: 'https://elianbeak.de/wp-content/uploads/2024/02/C060266-R1-24-25-scaled.jpg', alt: 'Analog 35mm film photograph' },
+  { src: 'https://elianbeak.de/wp-content/uploads/2024/02/C060266-R1-26-27-scaled.jpg', alt: 'Analog 35mm film photograph — street' },
+  { src: 'https://elianbeak.de/wp-content/uploads/2024/02/C060269-R1-22-24-scaled.jpg', alt: 'Analog 35mm film photograph' },
+  { src: 'https://elianbeak.de/wp-content/uploads/2024/02/C060267-R1-03-4-scaled.jpg', alt: 'Analog 35mm film photograph — candid moment' },
+  { src: 'https://elianbeak.de/wp-content/uploads/2024/02/C060266-R1-20-21-scaled.jpg', alt: 'Analog 35mm film photograph' },
+  { src: 'https://elianbeak.de/wp-content/uploads/2024/02/C060265-R1-02-3-scaled.jpg', alt: 'Analog 35mm film photograph' },
+  { src: 'https://elianbeak.de/wp-content/uploads/2024/02/C060269-R1-29-31-scaled.jpg', alt: 'Analog 35mm film photograph — city life' },
+  { src: 'https://elianbeak.de/wp-content/uploads/2024/02/C061935-R1-05-6-scaled.jpg', alt: 'Analog 35mm film photograph' },
+  { src: 'https://elianbeak.de/wp-content/uploads/2024/02/C061934-R1-12-13-scaled.jpg', alt: 'Analog 35mm film photograph' },
+  { src: 'https://elianbeak.de/wp-content/uploads/2024/02/C061934-R1-06-7-scaled.jpg', alt: 'Analog 35mm film photograph' },
+  { src: 'https://elianbeak.de/wp-content/uploads/2024/02/C061934-R1-15-16-scaled.jpg', alt: 'Analog 35mm film photograph' },
+  { src: 'https://elianbeak.de/wp-content/uploads/2024/02/C061934-R1-33-34-scaled.jpg', alt: 'Analog 35mm film photograph' },
+  { src: 'https://elianbeak.de/wp-content/uploads/2024/02/C061929-R1-05-6-scaled.jpg', alt: 'Analog 35mm film photograph' },
+  { src: 'https://elianbeak.de/wp-content/uploads/2024/02/C061929-R1-16-17-scaled.jpg', alt: 'Analog 35mm film photograph' },
+  { src: 'https://elianbeak.de/wp-content/uploads/2024/02/C061935-R1-14-15-scaled.jpg', alt: 'Analog 35mm film photograph — Cologne' },
+  { src: 'https://elianbeak.de/wp-content/uploads/2024/02/C061935-R1-04-5-scaled.jpg', alt: 'Analog 35mm film photograph' },
+  { src: 'https://elianbeak.de/wp-content/uploads/2024/02/C061935-R1-03-4-scaled.jpg', alt: 'Analog 35mm film photograph' },
+  { src: 'https://elianbeak.de/wp-content/uploads/2024/02/C061935-R1-02-3-scaled.jpg', alt: 'Analog 35mm film photograph' },
+  { src: 'https://elianbeak.de/wp-content/uploads/2024/02/C061935-R1-01-2-scaled.jpg', alt: 'Analog 35mm film photograph' },
+  { src: 'https://elianbeak.de/wp-content/uploads/2024/02/C058880-R1-06-7-scaled.jpg', alt: 'Analog 35mm film photograph' },
+  { src: 'https://elianbeak.de/wp-content/uploads/2024/02/C058880-R1-04-5-scaled.jpg', alt: 'Analog 35mm film photograph' },
+  { src: 'https://elianbeak.de/wp-content/uploads/2024/02/C058880-R1-05-6-scaled.jpg', alt: 'Analog 35mm film photograph' },
+  { src: 'https://elianbeak.de/wp-content/uploads/2024/02/C058880-R1-33-34-scaled.jpg', alt: 'Analog 35mm film photograph' },
+  { src: 'https://elianbeak.de/wp-content/uploads/2024/02/C058880-R1-03-4-scaled.jpg', alt: 'Analog 35mm film photograph' },
+  { src: 'https://elianbeak.de/wp-content/uploads/2024/02/C058880-R1-07-8-scaled.jpg', alt: 'Analog 35mm film photograph' },
+  { src: 'https://elianbeak.de/wp-content/uploads/2024/02/C058880-R1-02-3-scaled.jpg', alt: 'Analog 35mm film photograph' },
+  { src: 'https://elianbeak.de/wp-content/uploads/2024/02/C058880-R1-27-28-scaled.jpg', alt: 'Analog 35mm film photograph' },
+  { src: 'https://elianbeak.de/wp-content/uploads/2024/02/C060266-R1-03-4-scaled.jpg', alt: 'Analog 35mm film photograph' },
+  { src: 'https://elianbeak.de/wp-content/uploads/2024/02/C059750-R1-18-19-scaled.jpg', alt: 'Analog 35mm film photograph' },
+  { src: 'https://elianbeak.de/wp-content/uploads/2024/02/C059750-R1-14-15-scaled.jpg', alt: 'Analog 35mm film photograph' },
+  { src: 'https://elianbeak.de/wp-content/uploads/2024/02/C059750-R1-06-7-scaled.jpg', alt: 'Analog 35mm film photograph' },
+  { src: 'https://elianbeak.de/wp-content/uploads/2024/02/C059459-R1-23-24-scaled.jpg', alt: 'Analog 35mm film photograph' },
+  { src: 'https://elianbeak.de/wp-content/uploads/2024/02/C058267-R1-35-36-scaled.jpeg', alt: 'Analog 35mm film photograph' },
+  { src: 'https://elianbeak.de/wp-content/uploads/2024/02/C058267-R1-34-35-scaled.jpeg', alt: 'Analog 35mm film photograph' },
+  { src: 'https://elianbeak.de/wp-content/uploads/2024/02/C059459-R1-18-19-scaled.jpg', alt: 'Analog 35mm film photograph' },
+  { src: 'https://elianbeak.de/wp-content/uploads/2024/02/C058267-R1-33-34-scaled.jpeg', alt: 'Analog 35mm film photograph' },
+  { src: 'https://elianbeak.de/wp-content/uploads/2024/02/C058267-R1-24-25-scaled.jpeg', alt: 'Analog 35mm film photograph — Caribbean' },
+  { src: 'https://elianbeak.de/wp-content/uploads/2024/02/C058267-R1-23-24-scaled.jpeg', alt: 'Analog 35mm film photograph' },
+  { src: 'https://elianbeak.de/wp-content/uploads/2024/02/C058267-R1-22-23-scaled.jpeg', alt: 'Analog 35mm film photograph' },
+  { src: 'https://elianbeak.de/wp-content/uploads/2024/02/C058879-R1-24-25-scaled.jpg', alt: 'Analog 35mm film photograph' },
+  { src: 'https://elianbeak.de/wp-content/uploads/2024/02/C058879-R1-23-24-scaled.jpg', alt: 'Analog 35mm film photograph' },
+  { src: 'https://elianbeak.de/wp-content/uploads/2024/02/C058879-R1-22-23-scaled.jpg', alt: 'Analog 35mm film photograph' },
+  { src: 'https://elianbeak.de/wp-content/uploads/2024/02/C060418-R1-11-12-scaled.jpg', alt: 'Analog 35mm film photograph' },
+  { src: 'https://elianbeak.de/wp-content/uploads/2024/04/Image.png', alt: 'Analog 35mm film photograph by Elian Beak, Cologne' },
 ];
 ---
 
@@ -75,7 +75,7 @@ const photos = [
       <!-- Masonry grid via CSS columns -->
       <div class="columns-2 md:columns-3 lg:columns-4 gap-1 space-y-1">
         {photos.map((photo, i) => (
-          <div class="break-inside-avoid fade-in">
+          <div class="break-inside-avoid gallery-item" style={`transition-delay: ${Math.min(i * 0.05, 1.5)}s`}>
             <img
               src={photo.src}
               alt={photo.alt}
@@ -94,12 +94,12 @@ const photos = [
 </BaseLayout>
 
 <style>
-  .fade-in {
+  .gallery-item {
     opacity: 0;
-    transform: translateY(10px);
+    transform: translateY(12px);
     transition: opacity 0.5s ease, transform 0.5s ease;
   }
-  .fade-in.visible {
+  .gallery-item.visible {
     opacity: 1;
     transform: translateY(0);
   }
@@ -117,5 +117,5 @@ const photos = [
     },
     { threshold: 0.05 }
   );
-  document.querySelectorAll('.fade-in').forEach((el) => observer.observe(el));
+  document.querySelectorAll('.gallery-item').forEach((el) => observer.observe(el));
 </script>

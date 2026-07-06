@@ -12,7 +12,7 @@ const links = [
 
 <header class="fixed top-0 left-0 right-0 z-50 px-6 py-4 flex items-center justify-between">
   <!-- Logo -->
-  <a href="/" aria-label="Elian Beak Home">
+  <a href="/" aria-label="Elian Beak Home" class="nav-link">
     <img
       src="https://elianbeak.de/wp-content/uploads/2024/03/Logo_Weiss.png"
       alt="Elian Beak"
@@ -29,8 +29,10 @@ const links = [
     {links.map(({ href, label }) => (
       <a
         href={href}
-        class={`text-sm tracking-wide transition-opacity duration-300 hover:opacity-100 ${
-          currentPath === href ? 'opacity-100' : 'opacity-50'
+        class={`nav-link nav-underline text-sm tracking-wide transition-opacity duration-300 ${
+          currentPath === href || (href !== '/' && currentPath.startsWith(href))
+            ? 'opacity-100 active'
+            : 'opacity-50'
         }`}
       >
         {label}
@@ -38,7 +40,7 @@ const links = [
     ))}
     <a
       href="/contact"
-      class="text-sm tracking-wide border border-white/30 px-4 py-2 transition-all duration-300 hover:bg-white hover:text-black"
+      class="nav-link text-sm tracking-wide border border-white/30 px-4 py-2 transition-all duration-300 hover:bg-white hover:text-black"
     >
       Let's move together!
     </a>
@@ -67,18 +69,38 @@ const links = [
   {links.map(({ href, label }) => (
     <a
       href={href}
-      class="text-2xl tracking-wide opacity-80 hover:opacity-100 transition-opacity duration-300"
+      class="nav-link text-2xl tracking-wide opacity-80 hover:opacity-100 transition-opacity duration-300"
     >
       {label}
     </a>
   ))}
   <a
     href="/contact"
-    class="text-xl tracking-wide border border-white/30 px-6 py-3 mt-4 hover:bg-white hover:text-black transition-all duration-300"
+    class="nav-link text-xl tracking-wide border border-white/30 px-6 py-3 mt-4 hover:bg-white hover:text-black transition-all duration-300"
   >
     Let's move together!
   </a>
 </div>
+
+<style>
+  .nav-underline {
+    position: relative;
+  }
+  .nav-underline::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 0;
+    height: 1px;
+    background: white;
+    transition: width 0.3s ease;
+  }
+  .nav-underline:hover::after,
+  .nav-underline.active::after {
+    width: 100%;
+  }
+</style>
 
 <script>
   const toggle = document.getElementById('menu-toggle');
@@ -109,7 +131,6 @@ const links = [
     }
   });
 
-  // Close on nav link click
   menu?.querySelectorAll('a').forEach((link) => {
     link.addEventListener('click', () => {
       open = false;

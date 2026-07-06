@@ -44,6 +44,14 @@ const projects = [
     image: 'http://elianbeak.de/wp-content/uploads/2024/01/Sequence-01.00_05_00_12.Still024.png',
   },
 ];
+
+const schemaProjects = projects.map((p) => ({
+  '@type': 'CreativeWork',
+  name: p.subtitle ? `${p.title} — ${p.subtitle}` : p.title,
+  creator: { '@id': 'https://elianbeak.de/#person' },
+  image: p.image,
+  url: 'https://elianbeak.de/work',
+}));
 ---
 
 <BaseLayout
@@ -51,41 +59,16 @@ const projects = [
   description="Audio Engineering und Sound Design Projekte von Elian Beak für BMW, Hyundai, The North Face, Asics, JD Sports und mehr."
   canonical="https://elianbeak.de/work"
 >
+  <script type="application/ld+json" set:html={JSON.stringify(schemaProjects)} />
+
   <Nav />
 
   <main class="pt-32 pb-20 px-6">
     <div class="max-w-7xl mx-auto">
       <h1 class="text-xs tracking-widest uppercase text-white/40 mb-10">All Work</h1>
-      <WorkGrid projects={projects} priorityCount={3} />
+      <WorkGrid projects={projects} priorityCount={3} stagger={true} />
     </div>
   </main>
 
   <Footer />
 </BaseLayout>
-
-<style>
-  .fade-in {
-    opacity: 0;
-    transform: translateY(20px);
-    transition: opacity 0.6s ease, transform 0.6s ease;
-  }
-  .fade-in.visible {
-    opacity: 1;
-    transform: translateY(0);
-  }
-</style>
-
-<script>
-  const observer = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('visible');
-          observer.unobserve(entry.target);
-        }
-      });
-    },
-    { threshold: 0.1 }
-  );
-  document.querySelectorAll('.fade-in').forEach((el) => observer.observe(el));
-</script>

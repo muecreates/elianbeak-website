@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://elianbeak.de/sitemap-index.xml
+Sitemap: https://elianbeak.de/sitemap.xml

@@ -5,24 +5,26 @@ interface Props {
   image: string;
   href?: string;
   priority?: boolean;
+  staggerIndex?: number;
 }
 
-const { title, subtitle, image, href = '/work', priority = false } = Astro.props;
+const { title, subtitle, image, href = '/work', priority = false, staggerIndex = 0 } = Astro.props;
 ---
 
 <a
   href={href}
-  class="group relative block overflow-hidden aspect-video bg-white/5 fade-in"
+  class="group relative block overflow-hidden aspect-video bg-white/5 work-card"
   aria-label={`${title}${subtitle ? ' — ' + subtitle : ''}`}
+  style={`transition-delay: ${staggerIndex * 0.08}s`}
 >
   <img
     src={image}
-    alt={`${title}${subtitle ? ' — ' + subtitle : ''}`}
+    alt={`${title}${subtitle ? ' — ' + subtitle : ''} — Elian Beak Audio Project`}
     width="800"
     height="450"
     loading={priority ? 'eager' : 'lazy'}
     fetchpriority={priority ? 'high' : 'auto'}
-    class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+    class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105 will-change-transform"
   />
   <!-- Hover overlay -->
   <div class="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col items-center justify-center text-center px-4">
@@ -32,3 +34,15 @@ const { title, subtitle, image, href = '/work', priority = false } = Astro.props
     )}
   </div>
 </a>
+
+<style>
+  .work-card {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.55s ease, transform 0.55s ease;
+  }
+  .work-card.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+</style>

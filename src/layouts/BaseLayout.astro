@@ -28,6 +28,9 @@ const {
     {noIndex && <meta name="robots" content="noindex, nofollow" />}
     <link rel="canonical" href={canonical} />
 
+    <!-- View Transitions -->
+    <meta name="view-transition" content="same-origin" />
+
     <!-- OpenGraph -->
     <meta property="og:type" content="website" />
     <meta property="og:url" content={canonical} />
@@ -85,8 +88,88 @@ const {
         ]
       }
     </script>
+
+    <style>
+      /* Custom cursor */
+      *, *::before, *::after { cursor: none !important; }
+
+      #cursor {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        background: white;
+        pointer-events: none;
+        z-index: 9999;
+        transform: translate(-50%, -50%);
+        transition: opacity 0.2s ease, transform 0.15s ease, width 0.25s ease, height 0.25s ease, background 0.25s ease;
+        will-change: transform;
+      }
+
+      #cursor.expanded {
+        width: 36px;
+        height: 36px;
+        background: transparent;
+        border: 1px solid rgba(255,255,255,0.6);
+        transform: translate(-50%, -50%);
+      }
+
+      /* View Transitions fade */
+      @view-transition {
+        navigation: auto;
+      }
+
+      ::view-transition-old(root) {
+        animation: vt-fade-out 0.25s ease forwards;
+      }
+      ::view-transition-new(root) {
+        animation: vt-fade-in 0.3s ease forwards;
+      }
+
+      @keyframes vt-fade-out {
+        from { opacity: 1; }
+        to   { opacity: 0; }
+      }
+      @keyframes vt-fade-in {
+        from { opacity: 0; }
+        to   { opacity: 1; }
+      }
+    </style>
   </head>
-  <body class="bg-black text-white min-h-screen font-sans antialiased">
+  <body class="bg-black text-white min-h-screen font-sans antialiased overflow-x-hidden">
+    <!-- Custom cursor dot -->
+    <div id="cursor" aria-hidden="true"></div>
+
     <slot />
+
+    <script>
+      // Custom cursor
+      const cursor = document.getElementById('cursor');
+      if (cursor && window.matchMedia('(pointer: fine)').matches) {
+        let mx = 0, my = 0;
+        document.addEventListener('mousemove', (e) => {
+          mx = e.clientX;
+          my = e.clientY;
+          cursor.style.left = mx + 'px';
+          cursor.style.top = my + 'px';
+        });
+
+        document.addEventListener('mouseenter', () => cursor.style.opacity = '1');
+        document.addEventListener('mouseleave', () => cursor.style.opacity = '0');
+
+        document.addEventListener('mouseover', (e) => {
+          const t = e.target as HTMLElement;
+          if (t.closest('a, button, [role="button"], input, textarea, select, label')) {
+            cursor.classList.add('expanded');
+          } else {
+            cursor.classList.remove('expanded');
+          }
+        });
+      } else if (cursor) {
+        cursor.style.display = 'none';
+      }
+    </script>
   </body>
 </html>
