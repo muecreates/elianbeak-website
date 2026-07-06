@@ -1,0 +1,181 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Nav from '../components/Nav.astro';
+import WorkGrid from '../components/WorkGrid.astro';
+import Footer from '../components/Footer.astro';
+
+const projects = [
+  {
+    title: 'BMW',
+    subtitle: 'Auto Shanghai',
+    image: 'http://elianbeak.de/wp-content/uploads/2024/01/Sequence-01.00_03_34_03.Still015.png',
+  },
+  {
+    title: 'June Freedom',
+    subtitle: 'Spiritual',
+    image: 'http://elianbeak.de/wp-content/uploads/2025/11/Still-2025-11-26-171302_1.1.4-e1764339782609.jpeg',
+  },
+  {
+    title: 'Hyundai',
+    image: 'http://elianbeak.de/wp-content/uploads/2024/07/Sequence-01.00_00_18_06.Still081.png',
+  },
+  {
+    title: 'Asics',
+    image: 'http://elianbeak.de/wp-content/uploads/2025/11/Still-2025-11-26-171302_1.3.7-e1764341428933.jpeg',
+  },
+  {
+    title: 'The North Face',
+    image: 'http://elianbeak.de/wp-content/uploads/2024/01/Sequence-01.00_01_46_01.Still010.png',
+  },
+  {
+    title: 'JD Sports',
+    image: 'http://elianbeak.de/wp-content/uploads/2025/11/Still-2025-11-26-171302_1.2.1.jpeg',
+  },
+];
+
+const galleryPreview = [
+  'https://elianbeak.de/wp-content/uploads/2024/02/C060267-R1-17-21-scaled.jpg',
+  'https://elianbeak.de/wp-content/uploads/2024/02/C060267-R1-21-25-scaled.jpg',
+  'https://elianbeak.de/wp-content/uploads/2024/02/C060269-R1-17-19-scaled.jpg',
+  'https://elianbeak.de/wp-content/uploads/2024/02/C060265-R1-17-19-scaled.jpg',
+];
+---
+
+<BaseLayout>
+  <Nav />
+
+  <!-- Hero -->
+  <section class="relative min-h-screen flex flex-col items-center justify-center text-center px-6 overflow-hidden">
+    <!-- Background gradient -->
+    <div class="absolute inset-0 bg-gradient-to-b from-black/20 via-black/60 to-black z-10"></div>
+
+    <!-- Background image: first work thumbnail as hero BG -->
+    <img
+      src="http://elianbeak.de/wp-content/uploads/2024/01/Sequence-01.00_03_34_03.Still015.png"
+      alt=""
+      aria-hidden="true"
+      width="1920"
+      height="1080"
+      fetchpriority="high"
+      loading="eager"
+      class="absolute inset-0 w-full h-full object-cover opacity-30"
+    />
+
+    <div class="relative z-20 flex flex-col items-center gap-6">
+      <img
+        src="https://elianbeak.de/wp-content/uploads/2024/03/Logo_Weiss_Icon_600x600.png"
+        alt="Elian Beak"
+        width="80"
+        height="80"
+        fetchpriority="high"
+        loading="eager"
+        class="w-16 h-16 md:w-20 md:h-20 mb-4"
+      />
+      <h1 class="text-5xl md:text-7xl lg:text-8xl font-light tracking-[0.08em] uppercase">
+        Audio Services
+      </h1>
+      <p class="text-base md:text-lg text-white/50 tracking-widest uppercase max-w-sm">
+        Sound Design · Mixing · Post Production
+      </p>
+      <a
+        href="/contact"
+        class="mt-6 border border-white/30 px-8 py-3 text-sm tracking-widest uppercase hover:bg-white hover:text-black transition-all duration-300"
+      >
+        Let's move together!
+      </a>
+    </div>
+
+    <!-- Scroll indicator -->
+    <div class="absolute bottom-10 left-1/2 -translate-x-1/2 z-20 flex flex-col items-center gap-2 opacity-40">
+      <span class="text-xs tracking-widest uppercase">Scroll</span>
+      <div class="w-px h-8 bg-white/60 animate-pulse"></div>
+    </div>
+  </section>
+
+  <!-- Work Section -->
+  <section class="px-6 py-20" aria-labelledby="work-heading">
+    <div class="max-w-7xl mx-auto">
+      <div class="flex items-center justify-between mb-8">
+        <h2 id="work-heading" class="text-xs tracking-widest uppercase text-white/40">Selected Work</h2>
+        <a href="/work" class="text-xs tracking-widest uppercase text-white/40 hover:text-white/80 transition-opacity duration-300">
+          View All →
+        </a>
+      </div>
+      <WorkGrid projects={projects} priorityCount={2} />
+    </div>
+  </section>
+
+  <!-- Photos Preview -->
+  <section class="px-6 py-12" aria-labelledby="photos-heading">
+    <div class="max-w-7xl mx-auto">
+      <div class="flex items-center justify-between mb-8">
+        <h2 id="photos-heading" class="text-xs tracking-widest uppercase text-white/40">Shot on 35mm</h2>
+        <a href="/gallery" class="text-xs tracking-widest uppercase text-white/40 hover:text-white/80 transition-opacity duration-300">
+          View Gallery →
+        </a>
+      </div>
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-1">
+        {galleryPreview.map((src, i) => (
+          <a href="/gallery" class="group block overflow-hidden aspect-square bg-white/5 fade-in">
+            <img
+              src={src}
+              alt={`35mm analog photo ${i + 1}`}
+              width="400"
+              height="400"
+              loading="lazy"
+              class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+            />
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Teaser -->
+  <section class="px-6 py-20 border-t border-white/10" aria-labelledby="contact-heading">
+    <div class="max-w-2xl mx-auto text-center fade-in">
+      <h2 id="contact-heading" class="text-3xl md:text-4xl font-light tracking-wide mb-6">
+        Let's work together
+      </h2>
+      <p class="text-white/50 mb-8 leading-relaxed">
+        Based in Cologne, Germany. Available for projects worldwide.
+      </p>
+      <a
+        href="/contact"
+        class="inline-block border border-white/30 px-10 py-4 text-sm tracking-widest uppercase hover:bg-white hover:text-black transition-all duration-300"
+      >
+        Get in touch
+      </a>
+    </div>
+  </section>
+
+  <Footer />
+</BaseLayout>
+
+<style>
+  .fade-in {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+  .fade-in.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+</style>
+
+<script>
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    },
+    { threshold: 0.1, rootMargin: '0px 0px -50px 0px' }
+  );
+
+  document.querySelectorAll('.fade-in').forEach((el) => observer.observe(el));
+</script>

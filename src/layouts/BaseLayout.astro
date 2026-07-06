@@ -1,0 +1,92 @@
+---
+interface Props {
+  title?: string;
+  description?: string;
+  canonical?: string;
+  ogImage?: string;
+  noIndex?: boolean;
+}
+
+const {
+  title = 'Elian Beak — Audio Services Köln',
+  description = 'Elian Beak ist Audio Engineer und Sound Designer aus Köln. Recording, Mixing, Sound Design und Post Production für BMW, Hyundai, The North Face und mehr.',
+  canonical = Astro.url.href,
+  ogImage = 'https://elianbeak.de/wp-content/uploads/2024/03/Logo_Weiss.png',
+  noIndex = false,
+} = Astro.props;
+---
+
+<!doctype html>
+<html lang="de">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    {noIndex && <meta name="robots" content="noindex, nofollow" />}
+    <link rel="canonical" href={canonical} />
+
+    <!-- OpenGraph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:locale" content="de_DE" />
+    <meta property="og:site_name" content="Elian Beak" />
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImage} />
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="https://elianbeak.de/wp-content/uploads/2024/03/Logo_Weiss_Icon_600x600.png" />
+
+    <!-- Schema.org -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@type": "Person",
+            "@id": "https://elianbeak.de/#person",
+            "name": "Elian Beak",
+            "jobTitle": "Audio Engineer & Sound Designer",
+            "url": "https://elianbeak.de",
+            "email": "contact@elianbeak.de",
+            "telephone": "+492215702248",
+            "address": {
+              "@type": "PostalAddress",
+              "addressLocality": "Cologne",
+              "addressCountry": "DE"
+            },
+            "sameAs": []
+          },
+          {
+            "@type": "LocalBusiness",
+            "@id": "https://elianbeak.de/#business",
+            "name": "Elian Beak — Audio Services",
+            "url": "https://elianbeak.de",
+            "email": "contact@elianbeak.de",
+            "telephone": "+492215702248",
+            "description": "Audio Engineering, Sound Design und Post Production in Köln",
+            "address": {
+              "@type": "PostalAddress",
+              "addressLocality": "Cologne",
+              "addressCountry": "DE"
+            },
+            "founder": { "@id": "https://elianbeak.de/#person" },
+            "serviceType": ["Audio Engineering", "Sound Design", "Mixing", "Post Production"]
+          }
+        ]
+      }
+    </script>
+  </head>
+  <body class="bg-black text-white min-h-screen font-sans antialiased">
+    <slot />
+  </body>
+</html>

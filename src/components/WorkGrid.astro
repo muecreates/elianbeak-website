@@ -1,0 +1,29 @@
+---
+import WorkCard from './WorkCard.astro';
+
+interface Project {
+  title: string;
+  subtitle?: string;
+  image: string;
+  href?: string;
+}
+
+interface Props {
+  projects: Project[];
+  priorityCount?: number;
+}
+
+const { projects, priorityCount = 0 } = Astro.props;
+---
+
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-1">
+  {projects.map((project, i) => (
+    <WorkCard
+      title={project.title}
+      subtitle={project.subtitle}
+      image={project.image}
+      href={project.href ?? '/work'}
+      priority={i < priorityCount}
+    />
+  ))}
+</div>

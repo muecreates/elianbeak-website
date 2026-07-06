@@ -1,0 +1,91 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Nav from '../components/Nav.astro';
+import WorkGrid from '../components/WorkGrid.astro';
+import Footer from '../components/Footer.astro';
+
+const projects = [
+  {
+    title: 'BMW',
+    subtitle: 'Auto Shanghai',
+    image: 'http://elianbeak.de/wp-content/uploads/2024/01/Sequence-01.00_03_34_03.Still015.png',
+  },
+  {
+    title: 'June Freedom',
+    subtitle: 'Spiritual',
+    image: 'http://elianbeak.de/wp-content/uploads/2025/11/Still-2025-11-26-171302_1.1.4-e1764339782609.jpeg',
+  },
+  {
+    title: 'Hyundai',
+    image: 'http://elianbeak.de/wp-content/uploads/2024/07/Sequence-01.00_00_18_06.Still081.png',
+  },
+  {
+    title: 'Asics',
+    image: 'http://elianbeak.de/wp-content/uploads/2025/11/Still-2025-11-26-171302_1.3.7-e1764341428933.jpeg',
+  },
+  {
+    title: 'The North Face',
+    image: 'http://elianbeak.de/wp-content/uploads/2024/01/Sequence-01.00_01_46_01.Still010.png',
+  },
+  {
+    title: 'JD Sports',
+    image: 'http://elianbeak.de/wp-content/uploads/2025/11/Still-2025-11-26-171302_1.2.1.jpeg',
+  },
+  {
+    title: 'Rema',
+    image: 'http://elianbeak.de/wp-content/uploads/2024/07/REMA_HOMECOMING_16x9_new.00_00_13_03.Still003.png',
+  },
+  {
+    title: 'Hisense',
+    image: 'http://elianbeak.de/wp-content/uploads/2024/07/Hisense00_32_19.Still006.png',
+  },
+  {
+    title: 'Snipes x K1X',
+    image: 'http://elianbeak.de/wp-content/uploads/2024/01/Sequence-01.00_05_00_12.Still024.png',
+  },
+];
+---
+
+<BaseLayout
+  title="All Work — Elian Beak"
+  description="Audio Engineering und Sound Design Projekte von Elian Beak für BMW, Hyundai, The North Face, Asics, JD Sports und mehr."
+  canonical="https://elianbeak.de/work"
+>
+  <Nav />
+
+  <main class="pt-32 pb-20 px-6">
+    <div class="max-w-7xl mx-auto">
+      <h1 class="text-xs tracking-widest uppercase text-white/40 mb-10">All Work</h1>
+      <WorkGrid projects={projects} priorityCount={3} />
+    </div>
+  </main>
+
+  <Footer />
+</BaseLayout>
+
+<style>
+  .fade-in {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+  .fade-in.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+</style>
+
+<script>
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    },
+    { threshold: 0.1 }
+  );
+  document.querySelectorAll('.fade-in').forEach((el) => observer.observe(el));
+</script>

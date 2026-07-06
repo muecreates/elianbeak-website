@@ -1,0 +1,34 @@
+---
+interface Props {
+  title: string;
+  subtitle?: string;
+  image: string;
+  href?: string;
+  priority?: boolean;
+}
+
+const { title, subtitle, image, href = '/work', priority = false } = Astro.props;
+---
+
+<a
+  href={href}
+  class="group relative block overflow-hidden aspect-video bg-white/5 fade-in"
+  aria-label={`${title}${subtitle ? ' — ' + subtitle : ''}`}
+>
+  <img
+    src={image}
+    alt={`${title}${subtitle ? ' — ' + subtitle : ''}`}
+    width="800"
+    height="450"
+    loading={priority ? 'eager' : 'lazy'}
+    fetchpriority={priority ? 'high' : 'auto'}
+    class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+  />
+  <!-- Hover overlay -->
+  <div class="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col items-center justify-center text-center px-4">
+    <span class="text-lg font-medium tracking-wide">{title}</span>
+    {subtitle && (
+      <span class="text-sm text-white/60 mt-1">{subtitle}</span>
+    )}
+  </div>
+</a>

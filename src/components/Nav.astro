@@ -1,0 +1,120 @@
+---
+const currentPath = Astro.url.pathname;
+
+const links = [
+  { href: '/', label: 'Home' },
+  { href: '/work', label: 'All Work' },
+  { href: '/about', label: 'About' },
+  { href: '/gallery', label: 'Gallery' },
+  { href: '/contact', label: 'Contact' },
+];
+---
+
+<header class="fixed top-0 left-0 right-0 z-50 px-6 py-4 flex items-center justify-between">
+  <!-- Logo -->
+  <a href="/" aria-label="Elian Beak Home">
+    <img
+      src="https://elianbeak.de/wp-content/uploads/2024/03/Logo_Weiss.png"
+      alt="Elian Beak"
+      width="120"
+      height="32"
+      loading="eager"
+      fetchpriority="high"
+      class="h-7 w-auto"
+    />
+  </a>
+
+  <!-- Desktop Nav -->
+  <nav class="hidden md:flex items-center gap-8" aria-label="Main navigation">
+    {links.map(({ href, label }) => (
+      <a
+        href={href}
+        class={`text-sm tracking-wide transition-opacity duration-300 hover:opacity-100 ${
+          currentPath === href ? 'opacity-100' : 'opacity-50'
+        }`}
+      >
+        {label}
+      </a>
+    ))}
+    <a
+      href="/contact"
+      class="text-sm tracking-wide border border-white/30 px-4 py-2 transition-all duration-300 hover:bg-white hover:text-black"
+    >
+      Let's move together!
+    </a>
+  </nav>
+
+  <!-- Mobile Hamburger -->
+  <button
+    id="menu-toggle"
+    class="md:hidden flex flex-col gap-1.5 p-2"
+    aria-label="Toggle menu"
+    aria-expanded="false"
+    aria-controls="mobile-menu"
+  >
+    <span class="block w-6 h-px bg-white transition-all duration-300" id="bar1"></span>
+    <span class="block w-6 h-px bg-white transition-all duration-300" id="bar2"></span>
+    <span class="block w-6 h-px bg-white transition-all duration-300" id="bar3"></span>
+  </button>
+</header>
+
+<!-- Mobile Menu -->
+<div
+  id="mobile-menu"
+  class="fixed inset-0 z-40 bg-black flex flex-col items-center justify-center gap-8 opacity-0 pointer-events-none transition-opacity duration-300"
+  aria-hidden="true"
+>
+  {links.map(({ href, label }) => (
+    <a
+      href={href}
+      class="text-2xl tracking-wide opacity-80 hover:opacity-100 transition-opacity duration-300"
+    >
+      {label}
+    </a>
+  ))}
+  <a
+    href="/contact"
+    class="text-xl tracking-wide border border-white/30 px-6 py-3 mt-4 hover:bg-white hover:text-black transition-all duration-300"
+  >
+    Let's move together!
+  </a>
+</div>
+
+<script>
+  const toggle = document.getElementById('menu-toggle');
+  const menu = document.getElementById('mobile-menu');
+  const bar1 = document.getElementById('bar1');
+  const bar2 = document.getElementById('bar2');
+  const bar3 = document.getElementById('bar3');
+
+  let open = false;
+
+  toggle?.addEventListener('click', () => {
+    open = !open;
+    toggle.setAttribute('aria-expanded', String(open));
+    menu?.setAttribute('aria-hidden', String(!open));
+
+    if (open) {
+      menu?.classList.remove('opacity-0', 'pointer-events-none');
+      menu?.classList.add('opacity-100');
+      bar1?.classList.add('rotate-45', 'translate-y-2');
+      bar2?.classList.add('opacity-0');
+      bar3?.classList.add('-rotate-45', '-translate-y-2');
+    } else {
+      menu?.classList.add('opacity-0', 'pointer-events-none');
+      menu?.classList.remove('opacity-100');
+      bar1?.classList.remove('rotate-45', 'translate-y-2');
+      bar2?.classList.remove('opacity-0');
+      bar3?.classList.remove('-rotate-45', '-translate-y-2');
+    }
+  });
+
+  // Close on nav link click
+  menu?.querySelectorAll('a').forEach((link) => {
+    link.addEventListener('click', () => {
+      open = false;
+      menu.classList.add('opacity-0', 'pointer-events-none');
+      menu.classList.remove('opacity-100');
+    });
+  });
+</script>
